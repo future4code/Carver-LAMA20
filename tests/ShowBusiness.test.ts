@@ -14,7 +14,8 @@ describe("Tests ShowBusiness", () => {
     test("Error caso o weekDay esteja vazio", async () => {
         expect.assertions(2);
         try{
-            await showBusinessMock.createShow("FRIDAY", 20, 21 ,"band_Id_mock" )
+            const accessToken = await showBusinessMock.createShow("", 20, 21 ,"band_Id_mock" )
+            expect(accessToken).toEqual({"accessToken": "token_mock"})
             
 
         }catch(e){

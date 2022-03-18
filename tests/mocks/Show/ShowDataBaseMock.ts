@@ -8,6 +8,7 @@ export class ShowDataBaseMock{
     }
 
     public async getShowsByDay(week_day: string): Promise<void>{
+        
 
     }
 
