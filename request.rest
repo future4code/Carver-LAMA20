@@ -1,3 +1,5 @@
+
+# @name signup
 POST http://localhost:3000/user/signup 
 Content-Type: application/json
 
@@ -15,7 +17,7 @@ POST http://localhost:3000/user/login
 Content-Type: application/json
 
 {
-    "email":"Larissa@Lanes",
+    "email":"georg@gmail.com",
     "password":"123456"
 }
 
@@ -35,28 +37,45 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNlMWJmYmMzLTM3YjYt
 
 ###
 
-GET  http://localhost:3000/band/info/:id
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNlMWJmYmMzLTM3YjYtNDAyMC04Y2IxLTFhMDUwMGYzYmMyNyIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY0NzYxMDA1MCwiZXhwIjoxNjQ3NjExMjUwfQ.ZDg6kW-Os-fm5g8ud9x3q18O4tzu_aOONR7-zOhJvuk
+# @name GetInfoBandById
+GET  http://localhost:3000/band/byid/30410b2d-d328-4727-a8d4-d5c861507cd2
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNlMWJmYmMzLTM3YjYtNDAyMC04Y2IxLTFhMDUwMGYzYmMyNyIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY0NzYzMTE4MCwiZXhwIjoxNjQ3NjMyMzgwfQ.FlsVNMh8-9Nb6paz9tX6sV5EzRE5tENQM1oIYXWcfTE
+Content-Type: application/json
+
+###
+
+# @name GetInfoBandByName
+GET  http://localhost:3000/band/byname
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNlMWJmYmMzLTM3YjYtNDAyMC04Y2IxLTFhMDUwMGYzYmMyNyIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY0NzYzMTE4MCwiZXhwIjoxNjQ3NjMyMzgwfQ.FlsVNMh8-9Nb6paz9tX6sV5EzRE5tENQM1oIYXWcfTE
 Content-Type: application/json
 
 {
-    "name": "gun in roses"
+    "name":"gun in roses"
+}
+###
 
+# @name CreatShow
+POST http://localhost:3000/show/create
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNlMWJmYmMzLTM3YjYtNDAyMC04Y2IxLTFhMDUwMGYzYmMyNyIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY0NzYzMTE4MCwiZXhwIjoxNjQ3NjMyMzgwfQ.FlsVNMh8-9Nb6paz9tX6sV5EzRE5tENQM1oIYXWcfTE
+
+{
+    "weekDay": "FRIDAY",
+    "startTime": 21,
+    "endTime": 22,
+    "bandId": "99586356-e92a-4770-bb26-5b473630fe73"
 }
 
 ###
 
-POST http://localhost:3000/show/create
+# @name GetShowsByDay
+GET http://localhost:3000/show/byday
 Content-Type: application/json
-
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNlMWJmYmMzLTM3YjYtNDAyMC04Y2IxLTFhMDUwMGYzYmMyNyIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY0NzYwMjU0MSwiZXhwIjoxNjQ3NjAzNzQxfQ.H_YOWdvI_xhj4vrMBOonbOeHqJFEdJSZ0VHbD_Wj7nU
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNlMWJmYmMzLTM3YjYtNDAyMC04Y2IxLTFhMDUwMGYzYmMyNyIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY0NzYzMTE4MCwiZXhwIjoxNjQ3NjMyMzgwfQ.FlsVNMh8-9Nb6paz9tX6sV5EzRE5tENQM1oIYXWcfTE
 
 {
-    "weekDay": "FRIDAY",
-    "startTime": 10,
-    "endTime": 20,
-    "bandId": "99586356-e92a-4770-bb26-5b473630fe73"
- }
+    "week_day": "sexta"
+}
 
 
-
+###

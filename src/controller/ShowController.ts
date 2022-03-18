@@ -46,7 +46,7 @@ export class ShowController {
          if (error instanceof Error) {
             res.status(400).send(error.message);
         } else {
-            res.send({ message: "showController error" })
+            res.send({ message: "Algo deu errado ao coletar dados dos shows" })
         }
       }
    }
