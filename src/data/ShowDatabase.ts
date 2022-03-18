@@ -8,20 +8,6 @@ export class ShowDatabase extends BaseDataBase {
 
    protected tableName: string = "lama_shows";
 
-
-   private toModel(dbModel?: any): Show | undefined {
-      return (
-         dbModel &&
-         new Show(
-            dbModel.id,
-            dbModel.name,
-            dbModel.email,
-            dbModel.password,
-            dbModel.role
-         )
-      );
-   }
-
    public async createShow(show: Show): Promise<void> {
       try {
          await BaseDataBase.connection.raw(`

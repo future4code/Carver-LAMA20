@@ -15,18 +15,10 @@ export const stringToShow = (input: string): SHOW_DAYS => {
         case "SUNDAY":
             return SHOW_DAYS.SUNDAY
        default:
-          throw new CustomError(422, "Invalid SHOW_DAYS");
+          throw new CustomError(422, "Apenas FRIDAY, SATURDAY, SUNDAY são dias de shows validos ");
     }
  };
  
-
-export interface ShowInputDTO {
-    weekDay: SHOW_DAYS | undefined,
-    startTime: number | undefined,
-    endTime: number | undefined,
-    bandId: string | undefined
-}
-
 export class Show{
     constructor(
         private id : string,
