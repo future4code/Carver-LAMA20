@@ -1,9 +1,9 @@
 import { UserDatabase } from "../data/UserDatabase";
 import { CustomError } from "../errors/CustomError";
 import { User, stringToUserRole } from "../model/User";
-import hashGenerator, { HashGenerator } from "../services/hashGenerator";
-import idGenerator, { IdGenerator } from "../services/idGenerator";
-import tokenGenerator, { TokenGenerator } from "../services/tokenGenerator";
+import  { HashGenerator } from "../services/hashGenerator";
+import  { IdGenerator } from "../services/idGenerator";
+import  { TokenGenerator } from "../services/tokenGenerator";
 
 export class UserBusiness {
 
@@ -34,15 +34,15 @@ export class UserBusiness {
          if (password.length < 6) {
             throw new CustomError(422, "Invalid password");
          }
-
+                           
          const id = this.idGenerator.generate();
-
+                                             
          const cypherPassword = await this.hashGenerator.hash(password);
-         
+                        
          await this.userDatabase.createUser(
             new User(id, name, email, cypherPassword, stringToUserRole(role))
          );
-
+                                    
          const accessToken = this.tokenGenerator.generate({
             id,
             role,

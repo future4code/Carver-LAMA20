@@ -4,7 +4,8 @@
   "description": "Template para o projeto LAMA",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "clear && echo \"Running tests...\" && jest",
+    "jest": "jest",
     "start": " node build/index.js",
     "build": "tsc",
     "dev": "tsnd src/index.ts",
@@ -26,7 +27,7 @@
     "bcryptjs": "^2.4.3",
     "dotenv": "^8.6.0",
     "express": "^4.17.1",
-    "jest": "^26.0.1",
+    "jest": "^26.6.3",
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.21.2",
     "moment": "^2.27.0",
