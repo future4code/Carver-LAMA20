@@ -5,5 +5,6 @@ export const bandRouter = express.Router();
 
 const bandController = new BandController();
 
-bandRouter.get("/info/:id", bandController.info);
+bandRouter.get("/byname", bandController.byName);
+bandRouter.get("/byId/:id", bandController.byId);
 bandRouter.post("/register", bandController.register);

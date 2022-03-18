@@ -68,12 +68,11 @@ export class BandBusiness {
 
     }
 
-    public async info(
-      name:string, band_id: string, token: string
+    public async byName(
+      name:string, token: string
     ) {
         try {
-            
-            if (!band_id && !name) {
+            if (!name) {
                 throw new CustomError(422, "Missing input, name or id uninformed");
             }
 
@@ -83,13 +82,9 @@ export class BandBusiness {
             const tokenValidation: any = this.tokenGenerator.verify(token)
 
             const infoBand = (async ()=>{
-                if (name) {
+               
                  const data =    await this.bandDatabase.getBandByName(name);
                  return data
-                }else{
-                    const data =    await this.bandDatabase.getBandById(band_id);
-                    return data   
-                }
                 
             })
 
@@ -98,9 +93,6 @@ export class BandBusiness {
             if(!dataBand){
                 throw new Error("Banda não encontrada")
             }
-
-            
-    
 
             return dataBand;
         } catch (error) {
@@ -119,6 +111,53 @@ export class BandBusiness {
         }
 
     }
+
+    public async byId(
+         band_id: string, token: string
+      ) {
+          try {
+
+              if (!band_id) {
+                  throw new CustomError(422, "Missing input, name or id uninformed");
+              }
+  
+              if (!token) {
+                  throw new Error("token não enviado")
+              }
+              const tokenValidation: any = this.tokenGenerator.verify(token)
+  
+              const infoBand = (async ()=>{
+                const data =    await this.bandDatabase.getBandById(band_id);
+                return data 
+                  
+              })
+  
+              const dataBand = await infoBand()
+  
+              if(!dataBand){
+                  throw new Error("Banda não encontrada")
+              }
+  
+              
+      
+  
+              return dataBand;
+          } catch (error) {
+  
+              if (error instanceof Error) {
+                  if (error.message.includes("key 'email'")) {
+                      throw new CustomError(409, "Email already in use")
+                  } else {
+                      throw new CustomError(400, error.message)
+                  }
+  
+              } else {
+                  throw new CustomError(400, "signup error")
+              }
+  
+          }
+  
+      }
 
 }
 

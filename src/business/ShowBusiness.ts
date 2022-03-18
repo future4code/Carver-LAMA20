@@ -64,9 +64,6 @@ export class ShowBusiness {
     }
 
 
-
-=======
-
     public async showsInDay(
         week_day: string, token: string
     ) {
@@ -100,7 +97,7 @@ export class ShowBusiness {
                 }
 
             } else {
-                throw new CustomError(400, "signup error")
+                throw new CustomError(400, "showsinday error")
             }
 
         }
