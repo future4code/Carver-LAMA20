@@ -53,31 +53,6 @@ export class ShowBusiness {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public async showsInDay(
         week_day: string, token: string
     ) {
