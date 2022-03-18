@@ -25,7 +25,7 @@ export class BandController {
          if (error instanceof Error) {
             res.status(400).send(error.message);
         } else {
-            res.send({ message: "register error" })
+            res.send({ message: "Algo deu errado ao cadastrar banda" })
         }
       }
    }
@@ -41,7 +41,7 @@ export class BandController {
          if (error instanceof Error) {
             res.status(400).send(error.message);
         } else {
-            res.send({ message: "controller error" })
+            res.send({ message: "Algo deu errado ao coletar dados da banda por nome" })
         }
       }
    }
@@ -57,7 +57,7 @@ export class BandController {
          if (error instanceof Error) {
             res.status(400).send(error.message);
         } else {
-            res.send({ message: "controller error" })
+            res.send({ message: "Algo deu errado ao coletar dados da banda por id" })
         }
       }
    }

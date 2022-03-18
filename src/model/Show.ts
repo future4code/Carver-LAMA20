@@ -1,21 +1,21 @@
 import { CustomError } from "../errors/CustomError";
 
 export enum SHOW_DAYS {
-    FRIDAY = "FRIDAY",
-    SATURDAY = "SATURDAY",
-    SUNDAY = "SUNDAY"
+    SEXTA = "SEXTA",
+    SABADO = "SABADO",
+    DOMINGO = "DOMINGO"
 }
 
 export const stringToShow = (input: string): SHOW_DAYS => {
     switch (input) {
-       case "FRIDAY":
-          return SHOW_DAYS.FRIDAY;
-       case "SATURDAY":
-          return SHOW_DAYS.SATURDAY;
-        case "SUNDAY":
-            return SHOW_DAYS.SUNDAY
+       case "SEXTA":
+          return SHOW_DAYS.SEXTA;
+       case "SABADO":
+          return SHOW_DAYS.SABADO;
+        case "DOMINGO":
+            return SHOW_DAYS.DOMINGO
        default:
-          throw new CustomError(422, "Apenas FRIDAY, SATURDAY, SUNDAY são dias de shows validos ");
+          throw new CustomError(422, "Apenas SEXTA, SABADO, DOMINGO são dias de shows validos ");
     }
  };
  

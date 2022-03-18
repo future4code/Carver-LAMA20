@@ -24,15 +24,15 @@ export class UserBusiness {
    ) {
       try {
          if (!name || !email || !password || !role) {
-            throw new CustomError(422, "Missing input");
+            throw new CustomError(422, "Preencha todos os dados corretamente");
          }
 
          if (email.indexOf("@") === -1) {
-            throw new CustomError(422, "Invalid email");
+            throw new CustomError(422, "Por favor, forneça um email valido");
          }
 
          if (password.length < 6) {
-            throw new CustomError(422, "Invalid password");
+            throw new CustomError(422, "Password deve conter no minimo 6 digitos");
          }
 
          const id = this.idGenerator.generate();
@@ -51,14 +51,9 @@ export class UserBusiness {
       } catch (error) {
 
          if (error instanceof Error) {
-            if (error.message.includes("key 'email'")) {
-               throw new CustomError(409, "Email already in use")
-            }else{
                throw new CustomError(400,error.message)
-            }
-            
         } else {
-         throw new CustomError(400,"signup error")
+         throw new CustomError(400,"Erro ao cadastrar usuario")
         }
 
       }
@@ -69,12 +64,12 @@ export class UserBusiness {
 
       try {
          if (!email || !password) {
-            throw new CustomError(422, "Missing input");
+            throw new CustomError(422, "Preencha todos os dados corretamente");
          }
          const user = await this.userDatabase.getUserByEmail(email);
 
          if (!user) {
-            throw new CustomError(401, "Invalid credentials");
+            throw new CustomError(401, "Email ou senha incorretos");
          }
 
          const isPasswordCorrect = await this.hashGenerator.compareHash(
@@ -83,7 +78,7 @@ export class UserBusiness {
          );
 
          if (!isPasswordCorrect) {
-            throw new CustomError(401, "Invalid credentials");
+            throw new CustomError(401, "Email ou senha incorretos");
          }
 
          const accessToken = this.tokenGenerator.generate({
@@ -96,7 +91,7 @@ export class UserBusiness {
          if (error instanceof Error) {
             throw new CustomError(400,error.message);
         } else {
-         throw new CustomError(400,"login error")
+         throw new CustomError(400,"Erro ao logar usuario")
         }
       }
    }

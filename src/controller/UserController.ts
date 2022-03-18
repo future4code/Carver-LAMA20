@@ -18,7 +18,7 @@ export class UserController {
          if (error instanceof Error) {
             res.status(400).send(error.message);
         } else {
-            res.send({ message: "signup error" })
+            res.send({ message: "Algo deu errado ao cadastrar usuario" })
         }
       }
    }
@@ -32,7 +32,7 @@ export class UserController {
          if (error instanceof Error) {
             res.status(400).send(error.message);
         } else {
-            res.send({ message: "login error" })
+            res.send({ message: "Algo deu errado ao logar usuario" })
         }
       }
    }

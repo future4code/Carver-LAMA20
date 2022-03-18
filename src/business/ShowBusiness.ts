@@ -33,14 +33,10 @@ export class ShowBusiness {
             }
 
             if (endTime <= startTime) {
-                throw new CustomError(400, 'o início do seu show deve ser maior do que o final')
+                throw new CustomError(400, 'A início do seu show deve ser maior do que o final')
             }
 
             const tokenValidation: any = this.tokenGenerator.verify(token)
-
-            if (tokenValidation.role !== "ADMIN") {
-                throw new CustomError(403, "Desculpe,você não tem permissão para acessar essa área.")
-            }
 
             const start = this.showTime.findIndex((hours) => hours === startTime)
             const end = this.showTime.findIndex((hours) => hours === endTime)
@@ -51,12 +47,36 @@ export class ShowBusiness {
             const horaShows = await this.showDatabase.getTimeShowsByDay(weekDay)
 
             for (let showTime of horaShows) {
-                for (var i = showTime.start_time; i < showTime.end_time; i++) {
 
+                for (var i = showTime.start_time; i < showTime.end_time; i++) {
                     if (startTime === i) {
-                        throw new CustomError(400, 'já existe show cadastrado no horário deste dia')
+                        throw new CustomError(400, 'seu horário inicial não pode ser agendado em horario ja ocupado')
                     }
                 }
+
+                const verifyEndTyme = showTime.start_time + 1
+
+                for (var i = verifyEndTyme; i === showTime.end_time; i++) {
+                    if (endTime === i) {
+                        throw new CustomError(400, 'seu horário final não pode ser agendado em horario ja ocupado')
+                    }
+                }
+
+                for (var X = startTime; X < endTime; X++) {
+                    if (showTime.start_time === X) {
+                        throw new CustomError(400, 'ha shows agendados entre os horários solicitados')
+                    }
+                }
+
+                const verifyEndTyme2 = startTime + 1
+
+                for (var X = verifyEndTyme2; X === endTime; X++) {
+                    if (showTime.end_time === X) {
+                        throw new CustomError(400, 'ha shows agendados entre os horários solicitados')
+                    }
+                }
+
+
             }
 
             const id: string = this.idGenerator.generate();
@@ -80,17 +100,21 @@ export class ShowBusiness {
         try {
 
             if (!week_day) {
-                throw new CustomError(422, "Missing input");
+                throw new CustomError(422, "Preencha todos os dados corretamente");
+            }
+
+            if (week_day != "sexta" && week_day != "sabado" && week_day != "domingo") {
+                throw new CustomError(422, "Dias dos shows são: sexta, sabado e domingo");
             }
 
             if (!token) {
-                throw new Error("token não enviado")
+                throw new Error("Por favor, insira um token")
             }
             const tokenValidation: any = this.tokenGenerator.verify(token)
 
             const dataShowsConsult: any | undefined = await this.showDatabase.getShowsByDay(week_day);
 
-            if (!dataShowsConsult) {
+            if (!dataShowsConsult || dataShowsConsult.length === 0) {
                 throw new Error("Nenhuma banda registrada nesse dia")
             }
 
@@ -101,13 +125,13 @@ export class ShowBusiness {
 
             if (error instanceof Error) {
                 if (error.message.includes("key 'email'")) {
-                    throw new CustomError(409, "Email already in use")
+                    throw new CustomError(409, "Email já cadastrado")
                 } else {
                     throw new CustomError(400, error.message)
                 }
 
             } else {
-                throw new CustomError(400, "signup error")
+                throw new CustomError(400, "Erro ao retornar shows do dia")
             }
 
         }

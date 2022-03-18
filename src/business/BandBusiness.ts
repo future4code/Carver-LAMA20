@@ -1,7 +1,6 @@
 import { BandDatabase } from "../data/BandDatabase";
 import { CustomError } from "../errors/CustomError";
 import { Band, PostInputBand } from "../model/Band";
-import { HashGenerator } from "../services/hashGenerator";
 import { IdGenerator } from "../services/idGenerator";
 import { TokenGenerator } from "../services/tokenGenerator";
 
@@ -22,11 +21,11 @@ export class BandBusiness {
         try {
             const { name, music_genre, responsible } = input
             if (!name || !music_genre || !responsible) {
-                throw new CustomError(422, "Missing input");
+                throw new CustomError(422, "Preencha todos os dados corretamente");
             }
 
             if (!token) {
-                throw new Error("token não enviado")
+                throw new Error("Por favor, insira um token")
             }
             const tokenValidation: any = this.tokenGenerator.verify(token)
 
@@ -35,7 +34,6 @@ export class BandBusiness {
             }
 
             const dataBandsConsult:Band | undefined = await this.bandDatabase.getBandByName(name);
-            //const bandName = dataBandsConsult.getName()
 
             if (dataBandsConsult){
                 const bandName = dataBandsConsult.getName()
@@ -54,14 +52,9 @@ export class BandBusiness {
         } catch (error) {
 
             if (error instanceof Error) {
-                if (error.message.includes("key 'email'")) {
-                    throw new CustomError(409, "Email already in use")
-                } else {
                     throw new CustomError(400, error.message)
-                }
-
             } else {
-                throw new CustomError(400, "signup error")
+                throw new CustomError(400, "Erro ao registrar banda")
             }
 
         }
@@ -73,11 +66,11 @@ export class BandBusiness {
     ) {
         try {
             if (!name) {
-                throw new CustomError(422, "Missing input, name or id uninformed");
+                throw new CustomError(422, "Preencha todos os dados corretamente");
             }
 
             if (!token) {
-                throw new Error("token não enviado")
+                throw new Error("Por favor, insira um token")
             }
             const tokenValidation: any = this.tokenGenerator.verify(token)
 
@@ -98,14 +91,9 @@ export class BandBusiness {
         } catch (error) {
 
             if (error instanceof Error) {
-                if (error.message.includes("key 'email'")) {
-                    throw new CustomError(409, "Email already in use")
-                } else {
                     throw new CustomError(400, error.message)
-                }
-
             } else {
-                throw new CustomError(400, "signup error")
+                throw new CustomError(400, "Erro ao coletar informações da banda")
             }
 
         }
@@ -118,11 +106,11 @@ export class BandBusiness {
           try {
 
               if (!band_id) {
-                  throw new CustomError(422, "Missing input, name or id uninformed");
+                  throw new CustomError(422, "Preencha todos os dados corretamente");
               }
   
               if (!token) {
-                  throw new Error("token não enviado")
+                  throw new Error("Por favor, insira um token")
               }
               const tokenValidation: any = this.tokenGenerator.verify(token)
   
@@ -145,20 +133,12 @@ export class BandBusiness {
           } catch (error) {
   
               if (error instanceof Error) {
-                  if (error.message.includes("key 'email'")) {
-                      throw new CustomError(409, "Email already in use")
-                  } else {
                       throw new CustomError(400, error.message)
-                  }
-  
               } else {
-                  throw new CustomError(400, "signup error")
+                  throw new CustomError(400, "Erro ao coletar informações da banda")
               }
-  
           }
-  
       }
-
 }
 
 export default new BandBusiness(
