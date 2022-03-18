@@ -6,8 +6,8 @@ import { IdGenerator } from "../services/idGenerator";
 import { TokenGenerator } from "../services/tokenGenerator";
 
 export class ShowBusiness {
-    private showTime: number[] = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 ,21, 22, 23]
-    
+    private showTime: number[] = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+
     constructor(
         private idGenerator: IdGenerator,
         private tokenGenerator: TokenGenerator,
@@ -21,10 +21,10 @@ export class ShowBusiness {
         startTime: number,
         endTime: number,
         bandId: string,
-        token?:string
-    ){
-        try{
-            if(!weekDay || !startTime || !endTime || !bandId){
+        token?: string
+    ) {
+        try {
+            if (!weekDay || !startTime || !endTime || !bandId) {
                 throw new CustomError(422, "Preencha todos os dados corretamente")
             }
 
@@ -32,7 +32,7 @@ export class ShowBusiness {
                 throw new Error("Por favor, insira um token")
             }
 
-            if(endTime <= startTime ){
+            if (endTime <= startTime) {
                 throw new CustomError(400, 'o início do seu show deve ser maior do que o final')
             }
 
@@ -45,21 +45,31 @@ export class ShowBusiness {
             const start = this.showTime.findIndex((hours) => hours === startTime)
             const end = this.showTime.findIndex((hours) => hours === endTime)
 
-            if(start === -1 || end === -1){
+            if (start === -1 || end === -1) {
                 throw new CustomError(400, 'Escolha um horário válido de 8 as 23 para o show')
+            }
+            const horaShows = await this.showDatabase.getTimeShowsByDay(weekDay)
+
+            for (let showTime of horaShows) {
+                for (var i = showTime.start_time; i < showTime.end_time; i++) {
+
+                    if (startTime === i) {
+                        throw new CustomError(400, 'já existe show cadastrado no horário deste dia')
+                    }
+                }
             }
 
             const id: string = this.idGenerator.generate();
 
             await this.showDatabase.createShow(
                 new Show(id, stringToShow(weekDay), startTime, endTime, bandId)
-             );
-             
-        }catch(error){
+            );
+
+        } catch (error) {
             if (error instanceof Error) {
-                throw new Error(error.message) 
-              }
-              
+                throw new Error(error.message)
+            }
+
         }
     }
 
@@ -68,7 +78,7 @@ export class ShowBusiness {
         week_day: string, token: string
     ) {
         try {
-            
+
             if (!week_day) {
                 throw new CustomError(422, "Missing input");
             }
@@ -78,12 +88,12 @@ export class ShowBusiness {
             }
             const tokenValidation: any = this.tokenGenerator.verify(token)
 
-            const dataShowsConsult:any | undefined = await this.showDatabase.getShowsByDay(week_day);
+            const dataShowsConsult: any | undefined = await this.showDatabase.getShowsByDay(week_day);
 
-            if (!dataShowsConsult){
-                    throw new Error("Nenhuma banda registrada nesse dia")
+            if (!dataShowsConsult) {
+                throw new Error("Nenhuma banda registrada nesse dia")
             }
-            
+
             const id = this.idGenerator.generate();
 
             return dataShowsConsult;
@@ -97,7 +107,7 @@ export class ShowBusiness {
                 }
 
             } else {
-                throw new CustomError(400, "showsinday error")
+                throw new CustomError(400, "signup error")
             }
 
         }
