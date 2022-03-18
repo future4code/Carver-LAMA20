@@ -1,4 +1,3 @@
-import { ShowInputDTO } from './../model/Show';
 import { Request, Response } from "express";
 import BandBusiness from "../business/BandBusiness";
 import ShowBusiness from "../business/ShowBusiness";
@@ -9,7 +8,7 @@ export class ShowController {
    async createShow(req: Request, res: Response): Promise<void>{
       try{
          const {weekDay, startTime, endTime, bandId} = req.body
-         let message = 'sucess'
+         let message = 'sucesso'
          const token = req.headers.authorization
 
          const result = await ShowBusiness.createShow  (
@@ -26,14 +25,11 @@ export class ShowController {
          if(error instanceof Error){
             res.status(400).send(error.message)
          }else {
-            res.send({message: "error in create show"})
+            res.send({message: "Algo deu errado em criar um show"})
          }
 
       }
    }
-
-
-
 
    public async in_day(req: Request, res: Response) {
       try {
