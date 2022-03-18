@@ -35,8 +35,8 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNlMWJmYmMzLTM3YjYt
 
 ###
 
-GET  http://localhost:3000/band/info/e0dab63e-16a4-4d96-82e8-f5ba37f612ed
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImIyY2YwMGRkLTE5ZGUtNDMxOS04Yzk2LTc2MzI3ODkwMmNlNSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY0NzU2NzMwNCwiZXhwIjoxNjQ3NTY4NTA0fQ.tpKrsBxVfUo7rpRqZLAKWJ-NPgYVl_Lrz4n0DBJmqlU
+GET  http://localhost:3000/band/info/:id
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNlMWJmYmMzLTM3YjYtNDAyMC04Y2IxLTFhMDUwMGYzYmMyNyIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY0NzYxMDA1MCwiZXhwIjoxNjQ3NjExMjUwfQ.ZDg6kW-Os-fm5g8ud9x3q18O4tzu_aOONR7-zOhJvuk
 Content-Type: application/json
 
 {
