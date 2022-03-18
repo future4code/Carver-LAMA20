@@ -7,3 +7,4 @@ export const showRouter = express.Router();
 const showController = new ShowController();
 
 showRouter.get("/in_day", showController.in_day);
+showRouter.post("/create", showController.createShow)
