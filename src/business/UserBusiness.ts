@@ -38,6 +38,7 @@ export class UserBusiness {
          const id = this.idGenerator.generate();
 
          const cypherPassword = await this.hashGenerator.hash(password);
+         
          await this.userDatabase.createUser(
             new User(id, name, email, cypherPassword, stringToUserRole(role))
          );
