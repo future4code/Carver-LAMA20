@@ -49,4 +49,22 @@ export class ShowDatabase extends BaseDataBase {
       }
    }
 
+    public async getTimeShowsByDay(week_day: string): Promise<void|any> {
+      try {
+        const result = await BaseDataBase.connection.raw(`
+         
+         SELECT ${this.tableName}.start_time,${this.tableName}.end_time FROM ${this.tableName}
+         WHERE week_day = "${week_day}"
+         ;
+
+      `);
+      return result[0];
+      } catch (error) {
+         if (error instanceof Error) {
+           throw new Error(error.message) 
+         }
+         
+      }
+   }
+
 }
