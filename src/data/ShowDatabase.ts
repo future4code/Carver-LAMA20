@@ -29,19 +29,18 @@ export class ShowDatabase extends BaseDataBase {
    }
 
 
-
-
    public async getShowsByDay(week_day: string): Promise<void> {
       try {
         const result = await BaseDataBase.connection.raw(`
          
-         SELECT * FROM ${this.tableName}
+         SELECT lama_bands.name,lama_bands.music_genre FROM ${this.tableName}
          JOIN lama_bands
-         WHERE week_day = '${week_day}
+         ON lama_shows.band_id = lama_bands.id
+         WHERE week_day = "${week_day}"
          ORDER BY start_time;
 
       `);
-      return result;
+      return result[0];
       } catch (error) {
          if (error instanceof Error) {
            throw new Error(error.message) 

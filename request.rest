@@ -24,7 +24,7 @@ Content-Type: application/json
 # @name registerBand
 POST  http://localhost:3000/band/register 
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImIyY2YwMGRkLTE5ZGUtNDMxOS04Yzk2LTc2MzI3ODkwMmNlNSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY0NzU2NzMwNCwiZXhwIjoxNjQ3NTY4NTA0fQ.tpKrsBxVfUo7rpRqZLAKWJ-NPgYVl_Lrz4n0DBJmqlU
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNlMWJmYmMzLTM3YjYtNDAyMC04Y2IxLTFhMDUwMGYzYmMyNyIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY0NzYwMjU0MSwiZXhwIjoxNjQ3NjAzNzQxfQ.H_YOWdvI_xhj4vrMBOonbOeHqJFEdJSZ0VHbD_Wj7nU
 
 {
     "name":"gun in roses",
@@ -48,12 +48,15 @@ Content-Type: application/json
 
 POST http://localhost:3000/show/create
 Content-Type: application/json
-Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImIyY2YwMGRkLTE5ZGUtNDMxOS04Yzk2LTc2MzI3ODkwMmNlNSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY0NzU4MDE3MywiZXhwIjoxNjQ3NTgxMzczfQ.F1-exiQJXQnbORvyqDThzAyQghY69_h_n7lw8KT6i_8
+
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNlMWJmYmMzLTM3YjYtNDAyMC04Y2IxLTFhMDUwMGYzYmMyNyIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY0NzYwMjU0MSwiZXhwIjoxNjQ3NjAzNzQxfQ.H_YOWdvI_xhj4vrMBOonbOeHqJFEdJSZ0VHbD_Wj7nU
 
 {
     "weekDay": "FRIDAY",
-    "startTime": 1,
-    "endTime": 24,
-    "bandId": "e0dab63e-16a4-4d96-82e8-f5ba37f612ed"
-}
+    "startTime": 10,
+    "endTime": 20,
+    "bandId": "99586356-e92a-4770-bb26-5b473630fe73"
+ }
+
+
 
