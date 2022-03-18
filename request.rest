@@ -2,9 +2,9 @@ POST http://localhost:3000/user/signup
 Content-Type: application/json
 
 {
-    "name":"Larissa",
-    "role":"ADMIN",
-    "email":"Larissa@Lanes",
+    "name":"Sill",
+    "role":"NORMAL",
+    "email":"sill@sill",
     "password":"123456"
 }
 
@@ -48,12 +48,12 @@ Content-Type: application/json
 
 POST http://localhost:3000/show/create
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImIyY2YwMGRkLTE5ZGUtNDMxOS04Yzk2LTc2MzI3ODkwMmNlNSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY0NzU3NTYwNCwiZXhwIjoxNjQ3NTc2ODA0fQ.dtcPVQ_oJAulI_RMe0ZBLtHRjWRS2WEpMpG6K9Lo_tY
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImIyY2YwMGRkLTE5ZGUtNDMxOS04Yzk2LTc2MzI3ODkwMmNlNSIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY0NzU4MDE3MywiZXhwIjoxNjQ3NTgxMzczfQ.F1-exiQJXQnbORvyqDThzAyQghY69_h_n7lw8KT6i_8
 
 {
     "weekDay": "FRIDAY",
-    "startTime": 10,
-    "endTime": 20,
+    "startTime": 1,
+    "endTime": 24,
     "bandId": "e0dab63e-16a4-4d96-82e8-f5ba37f612ed"
 }
 

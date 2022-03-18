@@ -6,7 +6,8 @@ import { IdGenerator } from "../services/idGenerator";
 import { TokenGenerator } from "../services/tokenGenerator";
 
 export class ShowBusiness {
-
+    private showTime: number[] = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20 ,21, 22, 23]
+    
     constructor(
         private idGenerator: IdGenerator,
         private tokenGenerator: TokenGenerator,
@@ -15,7 +16,6 @@ export class ShowBusiness {
     ) {
 
     }
-
     async createShow(
         weekDay: SHOW_DAYS,
         startTime: number,
@@ -29,15 +29,26 @@ export class ShowBusiness {
             }
 
             if (!token) {
-                throw new Error("token não enviado")
+                throw new Error("Por favor, insira um token")
+            }
+
+            if(endTime <= startTime ){
+                throw new CustomError(400, 'o início do seu show deve ser maior do que o final')
             }
 
             const tokenValidation: any = this.tokenGenerator.verify(token)
 
             if (tokenValidation.role !== "ADMIN") {
-                throw new CustomError(403, "You should be an ADMIN user to access")
+                throw new CustomError(403, "Desculpe,você não tem permissão para acessar essa área.")
             }
-    
+
+            const start = this.showTime.findIndex((hours) => hours === startTime)
+            const end = this.showTime.findIndex((hours) => hours === endTime)
+
+            if(start === -1 || end === -1){
+                throw new CustomError(400, 'Escolha um horário válido de 8 as 23 para o show')
+            }
+
             const id: string = this.idGenerator.generate();
 
             await this.showDatabase.createShow(
@@ -51,32 +62,6 @@ export class ShowBusiness {
               
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     public async showsInDay(
         week_day: string, token: string
