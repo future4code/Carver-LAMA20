@@ -3,10 +3,10 @@
 ### Projeto Lama API simula o backend para um site de shows para um festival  com várias bandas 
 
 ## Documentação API:
- Acesse o postman aqui 👉 [ <img src="https://acegif.com/wp-content/uploads/upgifsok/party-14.gif" width="70" align="center"> ](https://documenter.getpostman.com/view/18385085/UVsHUnyw)
+ Acesse o postman aqui 👉 [ <img src="https://acegif.com/wp-content/uploads/upgifsok/party-14.gif" width="70" align="center"> ](https://documenter.getpostman.com/view/18385085/UVsPPjpR)
 
 ## Deploy no Heroku:
-[] 
+[https://lama-api-carver.herokuapp.com] 
 
 ## Desenvolvedores 🤖
 
