@@ -14,27 +14,11 @@ describe("Tests ShowBusiness", () => {
     test("Error caso o weekDay esteja vazio", async () => {
         expect.assertions(2);
         try{
-            const accessToken = await showBusinessMock.createShow("", 20, 21 ,"band_Id_mock" )
+            const accessToken = await showBusinessMock.createShow("", "", "", "" )
             expect(accessToken).toEqual({"accessToken": "token_mock"})
-            
-
         }catch(e){
             expect(e.message).toEqual("Preencha todos os dados corretamente")
             expect(e.statusCode).toBe(400)
         }
     })
-
-
-    // test("Error caso já exista um show no dia e horário", async () => {
-    //     expect.assertions(2);
-    //     try{
-    //         await 
-
-    //     }catch(e){
-    //         expect(e.message).toEqual("")
-    //         expect(e.statusCode).toBe(400)
-    //     }
-    // })
-
-    
 })

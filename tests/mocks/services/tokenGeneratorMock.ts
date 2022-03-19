@@ -9,7 +9,7 @@ export class TokenGeneratorMock {
     public verify(token: string) {
         return {
             id: 'id_mock',
-            role: USER_ROLES.NORMAL
+            role: USER_ROLES.ADMIN
         }
   }
 }
