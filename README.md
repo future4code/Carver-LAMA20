@@ -55,9 +55,5 @@
    → Pegar todos os shows de um dia
 
 
-   ## Os Testes são:
-
-   → 
-
-   → 
+  
    
